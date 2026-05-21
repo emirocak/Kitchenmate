@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KitchenMate — Akıllı Mutfak Asistanı</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F8F4FF;--surface:#fff;--purple:#7C4DBC;--purple-soft:#EDE9FF;
+  --green:#2E7D52;--green-soft:#E8F8EE;--text:#1E1040;--text-mid:#4A3878;
+  --text-soft:#8B7BAE;--border:#E5DFF5;--amber:#D4620A;--gold:#B8860B;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,244,255,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-size:21px;font-weight:700;color:var(--purple);text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-soft);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--purple)}
+.cta-btn{background:var(--purple);color:#fff;padding:9px 22px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:500;transition:opacity .2s}
+.cta-btn:hover{opacity:.85}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:110px 6% 64px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,77,188,.1) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:7px;background:var(--purple-soft);color:var(--purple);padding:6px 16px;border-radius:50px;font-size:13px;font-weight:500;margin-bottom:28px;border:1px solid rgba(124,77,188,.2)}
+h1{font-family:'Fraunces',serif;font-size:clamp(40px,7vw,76px);font-weight:700;line-height:1.1;margin-bottom:22px;max-width:680px}
+h1 em{font-style:italic;color:var(--purple)}
+.hero-sub{font-size:18px;color:var(--text-soft);max-width:500px;margin-bottom:40px;font-weight:300;line-height:1.7}
+.btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-p{background:var(--purple);color:#fff;padding:14px 32px;border-radius:50px;text-decoration:none;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(124,77,188,.35);transition:transform .2s,box-shadow .2s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,77,188,.45)}
+.btn-s{background:transparent;color:var(--purple);padding:14px 32px;border-radius:50px;text-decoration:none;font-size:15px;font-weight:500;border:1.5px solid rgba(124,77,188,.4);transition:background .2s}
+.btn-s:hover{background:var(--purple-soft)}
+
+/* PHONE */
+.phone-wrap{margin-top:60px;width:248px;height:500px;background:#1E1040;border-radius:38px;border:5px solid #2D1F5A;box-shadow:0 40px 80px rgba(30,16,64,.3);overflow:hidden}
+.pscreen{width:100%;height:100%;background:var(--bg);display:flex;flex-direction:column}
+.ptop{background:var(--surface);padding:12px 14px 10px;border-bottom:1px solid var(--border)}
+.ptitle{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--text)}
+.psub{font-size:9px;color:var(--text-soft);margin-top:1px}
+.pbody{padding:10px 11px;display:flex;flex-direction:column;gap:7px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.pstat{background:var(--surface);border-radius:9px;padding:7px 5px;text-align:center;border:1px solid var(--border)}
+.psval{font-size:15px;font-weight:700;color:var(--purple)}
+.pslbl{font-size:7px;color:var(--text-soft);margin-top:1px}
+.pitem{display:flex;align-items:center;gap:7px;background:var(--surface);border-radius:9px;padding:7px 9px;border:1px solid var(--border)}
+.pemoji{width:24px;height:24px;border-radius:6px;background:var(--purple-soft);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.pname{font-size:10px;font-weight:500;color:var(--text)}
+.pqty{font-size:8px;color:var(--text-soft)}
+.ptag{margin-left:auto;font-size:7px;font-weight:600;padding:2px 5px;border-radius:4px}
+.tok{background:var(--green-soft);color:var(--green)}
+.tlow{background:#FFF3E0;color:var(--amber)}
+.pai{background:linear-gradient(135deg,#1E1040,#3B1F7A);border-radius:9px;padding:9px 10px}
+.pai-lbl{font-size:8px;color:rgba(255,255,255,.4);margin-bottom:3px}
+.pai-txt{font-size:10px;color:rgba(255,255,255,.85);line-height:1.4}
+
+/* FEATURES */
+.section{padding:90px 6%;max-width:1160px;margin:0 auto}
+.sec-badge{display:inline-block;background:var(--purple-soft);color:var(--purple);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+.section h2{font-family:'Fraunces',serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;margin-bottom:14px}
+.section h2 em{font-style:italic;color:var(--purple)}
+.sec-sub{font-size:16px;color:var(--text-soft);max-width:480px;line-height:1.7;font-weight:300}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:52px}
+.feat{background:var(--surface);border-radius:18px;padding:26px;border:1px solid var(--border);transition:transform .25s,box-shadow .25s}
+.feat:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(124,77,188,.1)}
+.feat-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.feat h3{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:9px}
+.feat p{font-size:14px;color:var(--text-soft);line-height:1.65}
+.pro-tag{font-size:10px;background:var(--purple-soft);color:var(--purple);padding:2px 8px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:500;vertical-align:middle}
+
+/* PREMIUM */
+.prem-wrap{padding:0 3% 90px}
+.prem-box{background:linear-gradient(135deg,#1E1040 0%,#3B1F7A 100%);border-radius:28px;padding:60px 6%;text-align:center;position:relative;overflow:hidden}
+.prem-box::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(124,77,188,.4) 0%,transparent 70%)}
+.prem-box h2{font-family:'Fraunces',serif;font-size:clamp(26px,4vw,46px);font-weight:700;color:#fff;margin-bottom:10px}
+.prem-box p{font-size:16px;color:rgba(255,255,255,.55);margin-bottom:36px;font-weight:300}
+.perks{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px}
+.perk{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:50px;padding:7px 16px;font-size:13px;color:rgba(255,255,255,.85);font-weight:500}
+.price{font-family:'Fraunces',serif;font-size:52px;font-weight:700;color:#fff;line-height:1}
+.price sub{font-size:16px;font-weight:400;color:rgba(255,255,255,.45);vertical-align:bottom}
+.price-note{font-size:12px;color:rgba(255,255,255,.35);margin:4px 0 26px}
+
+/* LEGAL */
+.legal{display:none;max-width:740px;margin:100px auto 60px;padding:0 6%}
+.legal.on{display:block}
+.legal h1{font-family:'Fraunces',serif;font-size:38px;font-weight:700;margin:20px 0 6px}
+.legal .upd{font-size:13px;color:var(--text-soft);margin-bottom:36px}
+.legal h2{font-family:'Fraunces',serif;font-size:21px;font-weight:600;margin:32px 0 10px}
+.legal p,.legal li{font-size:15px;color:var(--text-mid);line-height:1.75;margin-bottom:10px}
+.legal ul{padding-left:18px}
+.legal a{color:var(--purple)}
+.hbox{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0}
+.hbox p{color:var(--text-mid);margin:0}
+.back{color:var(--purple);text-decoration:none;font-size:14px}
+
+.footer-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:44px;padding-bottom:12px}
+.footer-links a{color:var(--text-soft);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--purple)}
+footer{text-align:center;padding:28px 5%;border-top:1px solid var(--border);color:var(--text-soft);font-size:13px}
+
+@media(max-width:640px){.nav-links{display:none}.phone-wrap{width:210px;height:420px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo" onclick="show('home')">🍴 KitchenMate</a>
+  <ul class="nav-links">
+    <li><a href="#features">Özellikler</a></li>
+    <li><a href="#premium">Premium</a></li>
+    <li><a href="#" onclick="show('privacy')">Gizlilik</a></li>
+    <li><a href="#" onclick="show('terms')">Koşullar</a></li>
+  </ul>
+  <a href="#" class="cta-btn">App Store</a>
+</nav>
+
+<!-- HOME -->
+<div id="p-home">
+<section class="hero">
+  <div class="badge">✨ ChatGPT ile güçlendirildi</div>
+  <h1>Mutfağınızı <em>zekice</em> yönetin</h1>
+  <p class="hero-sub">Kiler takibi, akıllı alışveriş listesi ve AI destekli tarif önerileri. Hepsi bir arada.</p>
+  <div class="btns">
+    <a href="#" class="btn-p">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/></svg>
+      App Store'dan İndir
+    </a>
+    <a href="#features" class="btn-s">Özellikleri Keşfet</a>
+  </div>
+  <div class="phone-wrap">
+    <div class="pscreen">
+      <div class="ptop"><div class="ptitle">Kilerim</div><div class="psub">6 ürün · 1 uyarı</div></div>
+      <div class="pbody">
+        <div class="pgrid">
+          <div class="pstat"><div class="psval">6</div><div class="pslbl">Kiler</div></div>
+          <div class="pstat"><div class="psval" style="color:var(--amber)">1</div><div class="pslbl">Uyarı</div></div>
+          <div class="pstat"><div class="psval" style="color:var(--green)">3</div><div class="pslbl">Tarif</div></div>
+        </div>
+        <div class="pitem"><div class="pemoji">🥚</div><div><div class="pname">Yumurta</div><div class="pqty">6 adet</div></div><span class="ptag tok">Tamam</span></div>
+        <div class="pitem" style="border-color:rgba(212,98,10,.3)"><div class="pemoji" style="background:#FFF3E0">🥛</div><div><div class="pname">Süt</div><div class="pqty" style="color:var(--amber)">3 gün kaldı!</div></div><span class="ptag tlow">SKT!</span></div>
+        <div class="pitem"><div class="pemoji">🍝</div><div><div class="pname">Makarna</div><div class="pqty">500 g</div></div><span class="ptag tok">Tamam</span></div>
+        <div class="pai"><div class="pai-lbl">✨ CHEF AI</div><div class="pai-txt">Yumurta ve makarna var — menemen harika olur! 🍳</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="sec-badge">Özellikler</div>
+  <h2>Her şey <em>bir yerde</em></h2>
+  <p class="sec-sub">Mutfak yönetimini basitleştiren akıllı araçlar.</p>
+  <div class="feat-grid">
+    <div class="feat"><div class="feat-icon" style="background:var(--purple-soft)">🗄</div><h3>Kiler Takibi</h3><p>Ürünlerinizi, miktarlarını ve son kullanma tarihlerini takip edin. Kritik stok uyarıları hiçbir şeyi kaçırmamanızı sağlar.</p></div>
+    <div class="feat"><div class="feat-icon" style="background:var(--green-soft)">🛒</div><h3>Akıllı Alışveriş</h3><p>Gruplara göre organize liste, ilerleme takibi ve aldıklarınızı doğrudan kilere ekleme özelliği.</p></div>
+    <div class="feat"><div class="feat-icon" style="background:#FFF3E0">🍽️</div><h3>Tarif Analizi</h3><p>Kilerdeki malzemelere bakarak yapılabilecek tarifleri görün. Eksik malzemeleri listeye tek dokunuşla ekleyin.</p></div>
+    <div class="feat"><div class="feat-icon" style="background:var(--purple-soft)">✨</div><h3>Chef AI</h3><p>ChatGPT destekli kişisel şefiniz. Kilerinize göre özel tarif önerisi alın, eksik malzemeleri listeye ekletin.</p></div>
+    <div class="feat"><div class="feat-icon" style="background:var(--green-soft)">📅</div><h3>Haftalık Plan <span class="pro-tag">PRO</span></h3><p>7 günlük yemek planınızı AI ile oluşturun. Eksik malzemeler otomatik alışveriş listesine eklenir.</p></div>
+    <div class="feat"><div class="feat-icon" style="background:#FFF3E0">🔔</div><h3>Akıllı Bildirimler</h3><p>Son kullanma tarihi yaklaşan ürünler ve kritik stok için zamanında uyarılar.</p></div>
+  </div>
+</section>
+
+<div class="prem-wrap" id="premium">
+  <div class="prem-box">
+    <h2>Premium ile daha fazlası</h2>
+    <p>Sınırsız AI, reklamsız deneyim ve haftalık plan</p>
+    <div class="perks">
+      <div class="perk">✦ Sınırsız Chef AI</div>
+      <div class="perk">✦ Reklamsız</div>
+      <div class="perk">✦ Haftalık Yemek Planı</div>
+      <div class="perk">✦ Tam Tarif Analizi</div>
+    </div>
+    <div class="price">₺29<sub>.99 / ay</sub></div>
+    <div class="price-note">İstediğin zaman iptal et</div>
+    <a href="#" class="btn-p" style="display:inline-flex">👑 Premium'a Geç</a>
+  </div>
+</div>
+
+<div class="footer-links">
+  <a href="#" onclick="show('privacy')">Gizlilik Politikası</a>
+  <a href="#" onclick="show('terms')">Kullanım Koşulları</a>
+  <a href="mailto:support@devora.com.tr">Destek</a>
+</div>
+</div><!-- /p-home -->
+
+<!-- GİZLİLİK -->
+<div id="p-privacy" class="legal">
+  <a href="#" class="back" onclick="show('home')">← Ana Sayfa</a>
+  <h1>Gizlilik Politikası</h1>
+  <p class="upd">Son güncelleme: 21 Mayıs 2026</p>
+  <div class="hbox"><p>KitchenMate gizliliğinize saygı duyar. Bu politika, uygulamamızın hangi verileri topladığını ve nasıl kullandığını açıklar.</p></div>
+  <h2>1. Toplanan Veriler</h2>
+  <ul>
+    <li><strong>Kiler ve alışveriş verileri:</strong> Girdiğiniz veriler yalnızca cihazınızda (UserDefaults) saklanır, sunucuya gönderilmez.</li>
+    <li><strong>Reklam verileri:</strong> Google AdMob reklam gösterimi için anonim kullanım istatistikleri toplanır.</li>
+    <li><strong>AI sohbet içerikleri:</strong> Chef AI kullanıldığında mesajlarınız Firebase üzerinden OpenAI'ya iletilir. Bu veriler saklanmaz.</li>
+  </ul>
+  <h2>2. Verilerin Kullanımı</h2>
+  <ul>
+    <li>Uygulama özelliklerinin çalıştırılması</li>
+    <li>AI destekli tarif ve yemek önerileri</li>
+    <li>Ücretsiz kullanıcılara reklam gösterimi (Google AdMob)</li>
+  </ul>
+  <h2>3. Üçüncü Taraf Hizmetler</h2>
+  <ul>
+    <li><strong>Google AdMob</strong> — <a href="https://policies.google.com/privacy" target="_blank">Gizlilik Politikası</a></li>
+    <li><strong>OpenAI</strong> — <a href="https://openai.com/privacy" target="_blank">Gizlilik Politikası</a></li>
+    <li><strong>Google Firebase</strong> — <a href="https://firebase.google.com/support/privacy" target="_blank">Gizlilik Politikası</a></li>
+    <li><strong>Apple StoreKit</strong> — Abonelik yönetimi</li>
+  </ul>
+  <h2>4. Veri Güvenliği</h2>
+  <p>Kiler ve alışveriş verileriniz yalnızca cihazınızda saklanır. Bulut depolama kullanılmamaktadır. Uygulamayı sildiğinizde tüm veriler silinir.</p>
+  <h2>5. Çocukların Gizliliği</h2>
+  <p>KitchenMate 13 yaş altı çocuklara yönelik değildir ve bu yaş grubundan bilerek veri toplamaz.</p>
+  <h2>6. Değişiklikler</h2>
+  <p>Bu politika güncellenebilir. Önemli değişikliklerde uygulama içinden bildirim yapılır.</p>
+  <h2>7. İletişim</h2>
+  <p><a href="mailto:support@devora.com.tr">support@devora.com.tr</a></p>
+</div>
+
+<!-- KULLANIM KOŞULLARI -->
+<div id="p-terms" class="legal">
+  <a href="#" class="back" onclick="show('home')">← Ana Sayfa</a>
+  <h1>Kullanım Koşulları</h1>
+  <p class="upd">Son güncelleme: 21 Mayıs 2026</p>
+  <h2>1. Kabul</h2>
+  <p>KitchenMate uygulamasını kullanarak bu koşulları kabul etmiş olursunuz.</p>
+  <h2>2. Kullanım</h2>
+  <p>KitchenMate kişisel mutfak yönetimi amacıyla tasarlanmıştır. Ticari amaçla kullanılamaz.</p>
+  <h2>3. Premium Abonelik</h2>
+  <ul>
+    <li>Aylık ücretlendirme: ₺29.99/ay</li>
+    <li>Apple ID hesabından otomatik yenilenir</li>
+    <li>Yenileme tarihinden en az 24 saat önce iptal edilebilir</li>
+    <li>İptal: Ayarlar → Apple ID → Abonelikler</li>
+  </ul>
+  <h2>4. AI Özellikler</h2>
+  <p>Chef AI önerileri bilgi amaçlıdır. Yemek pişirme kararları kullanıcının sorumluluğundadır. AI yanıtları her zaman doğru olmayabilir.</p>
+  <h2>5. Sorumluluk Sınırı</h2>
+  <p>KitchenMate, kullanıcı verilerinin doğruluğundan sorumlu değildir. Uygulama "olduğu gibi" sunulmaktadır.</p>
+  <h2>6. Değişiklikler</h2>
+  <p>Bu koşullar değiştirilebilir. Güncel koşullar bu sayfada yayımlanır.</p>
+  <h2>7. İletişim</h2>
+  <p><a href="mailto:support@devora.com.tr">support@devora.com.tr</a></p>
+</div>
+
+<footer>
+  <p>© 2026 Devora. Tüm hakları saklıdır.</p>
+  <div class="footer-links" style="margin-top:10px">
+    <a href="#" onclick="show('privacy')">Gizlilik Politikası</a>
+    <a href="#" onclick="show('terms')">Kullanım Koşulları</a>
+    <a href="mailto:support@devora.com.tr">support@devora.com.tr</a>
+  </div>
+</footer>
+
+<script>
+function show(p){
+  ['home','privacy','terms'].forEach(function(id){
+    var el=document.getElementById('p-'+id);
+    if(id==='home'){el.style.display=p==='home'?'block':'none';}
+    else{el.className=p===id?'legal on':'legal';}
+  });
+  window.scrollTo(0,0);return false;
+}
+</script>
+</body>
+</html>
