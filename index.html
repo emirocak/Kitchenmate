@@ -14,8 +14,6 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,244,255,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{font-family:'Fraunces',serif;font-size:21px;font-weight:700;color:var(--purple);text-decoration:none}
 .nav-links{display:flex;gap:28px;list-style:none}
@@ -23,8 +21,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,244,255,
 .nav-links a:hover{color:var(--purple)}
 .cta-btn{background:var(--purple);color:#fff;padding:9px 22px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:500;transition:opacity .2s}
 .cta-btn:hover{opacity:.85}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:110px 6% 64px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,77,188,.1) 0%,transparent 70%);pointer-events:none}
 .badge{display:inline-flex;align-items:center;gap:7px;background:var(--purple-soft);color:var(--purple);padding:6px 16px;border-radius:50px;font-size:13px;font-weight:500;margin-bottom:28px;border:1px solid rgba(124,77,188,.2)}
@@ -36,8 +32,12 @@ h1 em{font-style:italic;color:var(--purple)}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,77,188,.45)}
 .btn-s{background:transparent;color:var(--purple);padding:14px 32px;border-radius:50px;text-decoration:none;font-size:15px;font-weight:500;border:1.5px solid rgba(124,77,188,.4);transition:background .2s}
 .btn-s:hover{background:var(--purple-soft)}
-
-/* PHONE */
+.appstore-badge{display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;padding:11px 24px;border-radius:12px;text-decoration:none;transition:opacity .2s}
+.appstore-badge:hover{opacity:.85}
+.appstore-badge svg{flex-shrink:0}
+.appstore-badge-text{text-align:left}
+.appstore-badge-text small{display:block;font-size:10px;opacity:.7;line-height:1}
+.appstore-badge-text span{display:block;font-size:16px;font-weight:600;line-height:1.3}
 .phone-wrap{margin-top:60px;width:248px;height:500px;background:#1E1040;border-radius:38px;border:5px solid #2D1F5A;box-shadow:0 40px 80px rgba(30,16,64,.3);overflow:hidden}
 .pscreen{width:100%;height:100%;background:var(--bg);display:flex;flex-direction:column}
 .ptop{background:var(--surface);padding:12px 14px 10px;border-bottom:1px solid var(--border)}
@@ -58,8 +58,6 @@ h1 em{font-style:italic;color:var(--purple)}
 .pai{background:linear-gradient(135deg,#1E1040,#3B1F7A);border-radius:9px;padding:9px 10px}
 .pai-lbl{font-size:8px;color:rgba(255,255,255,.4);margin-bottom:3px}
 .pai-txt{font-size:10px;color:rgba(255,255,255,.85);line-height:1.4}
-
-/* FEATURES */
 .section{padding:90px 6%;max-width:1160px;margin:0 auto}
 .sec-badge{display:inline-block;background:var(--purple-soft);color:var(--purple);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
 .section h2{font-family:'Fraunces',serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;line-height:1.15;margin-bottom:14px}
@@ -72,8 +70,6 @@ h1 em{font-style:italic;color:var(--purple)}
 .feat h3{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:9px}
 .feat p{font-size:14px;color:var(--text-soft);line-height:1.65}
 .pro-tag{font-size:10px;background:var(--purple-soft);color:var(--purple);padding:2px 8px;border-radius:50px;font-family:'DM Sans',sans-serif;font-weight:500;vertical-align:middle}
-
-/* PREMIUM */
 .prem-wrap{padding:0 3% 90px}
 .prem-box{background:linear-gradient(135deg,#1E1040 0%,#3B1F7A 100%);border-radius:28px;padding:60px 6%;text-align:center;position:relative;overflow:hidden}
 .prem-box::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(124,77,188,.4) 0%,transparent 70%)}
@@ -84,8 +80,6 @@ h1 em{font-style:italic;color:var(--purple)}
 .price{font-family:'Fraunces',serif;font-size:52px;font-weight:700;color:#fff;line-height:1}
 .price sub{font-size:16px;font-weight:400;color:rgba(255,255,255,.45);vertical-align:bottom}
 .price-note{font-size:12px;color:rgba(255,255,255,.35);margin:4px 0 26px}
-
-/* LEGAL */
 .legal{display:none;max-width:740px;margin:100px auto 60px;padding:0 6%}
 .legal.on{display:block}
 .legal h1{font-family:'Fraunces',serif;font-size:38px;font-weight:700;margin:20px 0 6px}
@@ -97,12 +91,10 @@ h1 em{font-style:italic;color:var(--purple)}
 .hbox{background:var(--purple-soft);border-left:3px solid var(--purple);padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0}
 .hbox p{color:var(--text-mid);margin:0}
 .back{color:var(--purple);text-decoration:none;font-size:14px}
-
 .footer-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:44px;padding-bottom:12px}
 .footer-links a{color:var(--text-soft);text-decoration:none;font-size:14px;transition:color .2s}
 .footer-links a:hover{color:var(--purple)}
 footer{text-align:center;padding:28px 5%;border-top:1px solid var(--border);color:var(--text-soft);font-size:13px}
-
 @media(max-width:640px){.nav-links{display:none}.phone-wrap{width:210px;height:420px}}
 </style>
 </head>
@@ -116,19 +108,21 @@ footer{text-align:center;padding:28px 5%;border-top:1px solid var(--border);colo
     <li><a href="#" onclick="show('privacy')">Gizlilik</a></li>
     <li><a href="#" onclick="show('terms')">Koşullar</a></li>
   </ul>
-  <a href="#" class="cta-btn">App Store</a>
+  <a href="https://apps.apple.com/tr/app/kitchenmate/id6752761314?l=tr" class="cta-btn" target="_blank">App Store'da İndir</a>
 </nav>
 
-<!-- HOME -->
 <div id="p-home">
 <section class="hero">
   <div class="badge">✨ ChatGPT ile güçlendirildi</div>
   <h1>Mutfağınızı <em>zekice</em> yönetin</h1>
   <p class="hero-sub">Kiler takibi, akıllı alışveriş listesi ve AI destekli tarif önerileri. Hepsi bir arada.</p>
   <div class="btns">
-    <a href="#" class="btn-p">
-      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/></svg>
-      App Store'dan İndir
+    <a href="https://apps.apple.com/tr/app/kitchenmate/id6752761314?l=tr" target="_blank" class="appstore-badge">
+      <svg width="22" height="22" fill="white" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z"/></svg>
+      <div class="appstore-badge-text">
+        <small>App Store'dan İndir</small>
+        <span>KitchenMate</span>
+      </div>
     </a>
     <a href="#features" class="btn-s">Özellikleri Keşfet</a>
   </div>
@@ -176,7 +170,7 @@ footer{text-align:center;padding:28px 5%;border-top:1px solid var(--border);colo
     </div>
     <div class="price">₺29<sub>.99 / ay</sub></div>
     <div class="price-note">İstediğin zaman iptal et</div>
-    <a href="#" class="btn-p" style="display:inline-flex">👑 Premium'a Geç</a>
+    <a href="https://apps.apple.com/tr/app/kitchenmate/id6752761314?l=tr" target="_blank" class="btn-p" style="display:inline-flex">👑 Premium'a Geç</a>
   </div>
 </div>
 
@@ -185,7 +179,7 @@ footer{text-align:center;padding:28px 5%;border-top:1px solid var(--border);colo
   <a href="#" onclick="show('terms')">Kullanım Koşulları</a>
   <a href="mailto:emirrocak@gmail.com">Destek</a>
 </div>
-</div><!-- /p-home -->
+</div>
 
 <!-- GİZLİLİK -->
 <div id="p-privacy" class="legal">
